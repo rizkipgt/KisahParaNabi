@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ebook Fulan</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+  </head>
+  <body>
+    <button class="mobile-menu-toggle mobile-only">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="app-container">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="logo">
+            <i class="fas fa-book-open"></i>
+            <h1>Ebook Fulan</h1>
+          </div>
+          <button class="close-sidebar mobile-only">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div class="book-list">
+          <h3><i class="fas fa-list"></i> Daftar Buku</h3>
+          <ul>
+            <li
+              class="book-item active"
+              data-pdf="assets/KisahParaNabiIbnuKatsir.pdf"
+            >
+              <i class="fas fa-book"></i> Kisah Para Nabi Tafsir Ibnu Katsir
+            </li>
+            <li class="book-item" data-pdf="assets/buku-contoh.pdf">
+              <i class="fas fa-book"></i> Coming Soon
+            </li>
+          </ul>
+        </div>
+
+        <div class="bookmarks-section">
+          <h3><i class="fas fa-bookmark"></i> Bookmark</h3>
+          <div class="bookmarks-list" id="bookmarksList">
+            <p class="empty-message">Tidak ada bookmark</p>
+          </div>
+        </div>
+
+        <div class="user-notes">
+          <h3><i class="fas fa-sticky-note"></i> Catatan</h3>
+          <div class="notes-list" id="notesList">
+            <p class="empty-message">Tidak ada catatan</p>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <div class="toolbar">
+          <div class="page-info">
+            <span id="pageNum">1</span> / <span id="pageCount">0</span>
+          </div>
+
+          <div class="search-box">
+            <input type="text" id="pageSearch" placeholder="Cari halaman..." />
+            <button id="goToPage" class="btn">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+
+          <div class="action-buttons">
+            <button id="addBookmark" class="btn icon-btn" title="Bookmark">
+              <i class="fas fa-bookmark"></i>
+            </button>
+            <button id="addNote" class="btn icon-btn" title="Catatan">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button id="searchText" class="btn icon-btn" title="Cari">
+              <i class="fas fa-search"></i>
+            </button>
+            <button id="zoomIn" class="btn icon-btn" title="Perbesar">
+              <i class="fas fa-search-plus"></i>
+            </button>
+            <button id="zoomOut" class="btn icon-btn" title="Perkecil">
+              <i class="fas fa-search-minus"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="reader-wrapper">
+          <button id="prevPage" class="page-nav-btn left-btn desktop-only">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+
+          <div class="reader-container">
+            <div class="page-spread">
+              <canvas id="pdfCanvasLeft" class="page-canvas"></canvas>
+              <canvas id="pdfCanvasRight" class="page-canvas"></canvas>
+            </div>
+            <canvas
+              id="pdfCanvasSingle"
+              class="page-canvas mobile-only"
+            ></canvas>
+          </div>
+
+          <button id="nextPage" class="page-nav-btn right-btn desktop-only">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="mobile-nav mobile-only">
+          <button id="mobilePrevPage" class="nav-btn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <span class="page-display">
+            <span id="mobilePageNum">1</span>/<span id="mobilePageCount"
+              >0</span
+            >
+          </span>
+          <button id="mobileNextPage" class="nav-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="text-search-container hidden" id="textSearchContainer">
+          <input
+            type="text"
+            id="textSearchInput"
+            placeholder="Cari teks dalam buku..."
+          />
+          <button id="textSearchBtn" class="btn">
+            <i class="fas fa-search"></i> Cari
+          </button>
+          <button id="closeTextSearch" class="btn">
+            <i class="fas fa-times"></i> Tutup
+          </button>
+          <div id="searchResults"></div>
+        </div>
+      </main>
+
+      <div class="modal hidden" id="noteModal">
+        <div class="modal-content">
+          <h3><i class="fas fa-edit"></i> Tambah Catatan</h3>
+          <textarea
+            id="noteText"
+            placeholder="Tulis catatan Anda di sini..."
+          ></textarea>
+          <div class="modal-actions">
+            <button id="saveNote" class="btn primary">
+              <i class="fas fa-save"></i> Simpan
+            </button>
+            <button id="cancelNote" class="btn">
+              <i class="fas fa-times"></i> Batal
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- <footer class="footer">
+        <p>&copy; 2023 rizki.pgt - Hak Cipta Dilindungi</p>
+      </footer> -->
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
